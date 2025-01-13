@@ -1,83 +1,65 @@
-const apiUrl = 'https://dog.ceo/api/breeds/image/random';
+// API URL for Open Library API (search books with pagination and search by title)
+const apiUrl = 'https://openlibrary.org/search.json';
 let currentPage = 1;
-let totalPages = 0;
-const postsPerPage = 5;
+const searchQuery = 'JavaScript'; // Example search query for books by title
 
 // References to DOM elements
-const searchInput = document.getElementById('search');
-const searchBtn = document.getElementById('searchBtn');
 const dataContainer = document.getElementById('data');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 
-// Function to fetch posts from the API
-async function fetchPosts(query = '', page = 1) {
-    const startIndex = (page - 1) * postsPerPage;
-    const searchParam = query ? `&q=${query}` : '';
-    const url = `${apiUrl}?_start=${startIndex}&_limit=${postsPerPage}${searchParam}`;
+// Function to fetch data from Open Library API
+async function fetchBooks(query, page) {
+    const searchUrl = `${apiUrl}?q=${query}&page=${page}&limit=5`;
     try {
-        const response = await fetch(url);
+        const response = await fetch(searchUrl);
         const data = await response.json();
-        totalPages = Math.ceil(100 / postsPerPage); // We assume the API has 100 posts
         return data;
     } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('There was a problem with the fetch operation:', error);
+        dataContainer.innerHTML = '<p>Error fetching data. Please try again later.</p>';
     }
 }
 
-// Function to render posts to the page
-function renderPosts(posts) {
-    dataContainer.innerHTML = ''; // Clear previous posts
-    posts.forEach(post => {
-        const postElement = document.createElement('div');
-        postElement.classList.add('post');
-        postElement.innerHTML = `<h3>${post.title}</h3><p>${post.body}</p>`;
-        dataContainer.appendChild(postElement);
+// Function to render books to the page
+function renderBooks(books) {
+    dataContainer.innerHTML = ''; // Clear previous books
+    books.forEach(book => {
+        const bookElement = document.createElement('div');
+        bookElement.classList.add('book');
+        bookElement.innerHTML = `<h3>${book.title}</h3><p>${book.author_name ? book.author_name.join(', ') : 'N/A'}</p>`;
+        dataContainer.appendChild(bookElement);
     });
 }
 
-// Function to handle search button click
-async function handleSearch() {
-    const query = searchInput.value.trim();
-    currentPage = 1; // Reset to first page on new search
-    const posts = await fetchPosts(query, currentPage);
-    renderPosts(posts);
-    updatePagination();
+// Function to handle pagination
+async function handlePagination() {
+    const data = await fetchBooks(searchQuery, currentPage);
+    if (data && data.docs) {
+        renderBooks(data.docs);
+        updatePagination(data.numFound);
+    }
 }
 
-// Function to handle pagination button clicks
-function updatePagination() {
+// Function to update pagination buttons
+function updatePagination(totalResults) {
+    const totalPages = Math.ceil(totalResults / 5);
     prevBtn.disabled = currentPage === 1;
     nextBtn.disabled = currentPage === totalPages;
 }
 
-// Function to handle "Next" button
-async function handleNextPage() {
+// Event listeners for pagination buttons
+prevBtn.addEventListener('click', () => {
+    if (currentPage > 1) {
+        currentPage--;
+        handlePagination();
+    }
+});
+
+nextBtn.addEventListener('click', () => {
     currentPage++;
-    const query = searchInput.value.trim();
-    const posts = await fetchPosts(query, currentPage);
-    renderPosts(posts);
-    updatePagination();
-}
+    handlePagination();
+});
 
-// Function to handle "Previous" button
-async function handlePrevPage() {
-    currentPage--;
-    const query = searchInput.value.trim();
-    const posts = await fetchPosts(query, currentPage);
-    renderPosts(posts);
-    updatePagination();
-}
-
-// Event listeners
-searchBtn.addEventListener('click', handleSearch);
-nextBtn.addEventListener('click', handleNextPage);
-prevBtn.addEventListener('click', handlePrevPage);
-
-// Initial fetch when the page loads
-(async () => {
-    const posts = await fetchPosts('', currentPage);
-    renderPosts(posts);
-    updatePagination();
-})();
-
+// Initial fetch to populate data
+handlePagination();
