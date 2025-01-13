@@ -1,32 +1,4 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-}
 
-h1 {
-    color: #333;
-}
-
-#data {
-    margin-top: 20px;
-}
-
-.post {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-
-.post h3 {
-    margin: 0 0 10px;
-}
-
-.post p {
-    margin: 0;
-}
-  
-//////////////////////////////////////////////////////////////////////////////
 
 body {
     font-family: Arial, sans-serif;
