@@ -1,4 +1,4 @@
-const apiUrl = 'https://api.nasa.gov/insight_weather/?api_key=DEMO_KEY&feedtype=json&ver=1.0';
+const apiUrl = 'https://dog.ceo/api/breeds/image/random';
 let currentPage = 1;
 let totalPages = 0;
 const postsPerPage = 5;
