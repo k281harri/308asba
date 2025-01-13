@@ -1,28 +1,31 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cat Breeds</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search and Paginated Posts</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div>
-    <label for="breedSelect">Select Breed:</label>
-    <select id="breedSelect"></select>
-  </div>
 
-  <div id="carousel" class="carousel"></div>
+    <h1>Search and Paginated Posts</h1>
 
-  <div id="infoDump"></div>
+    <!-- Search input -->
+    <input type="text" id="search" placeholder="Search posts by title...">
+    <button id="searchBtn">Search</button>
 
-  <button id="getFavouritesBtn">Show My Favourites</button>
+    <div id="data"></div>
 
-  <div id="progressBarContainer">
-    <div id="progressBar"></div>
-  </div>
+    <!-- Pagination controls -->
+    <div id="pagination">
+        <button id="prevBtn" disabled>Previous</button>
+        <button id="nextBtn">Next</button>
+    </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="index.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
+
