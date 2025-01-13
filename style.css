@@ -39,3 +39,173 @@ body {
     background-color: #ccc;
     cursor: not-allowed;
 }
+
+
+
+
+
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Background and body setup */
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffccff, #ffb3d9);
+    color: #333;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  /* Page title */
+  h1 {
+    font-size: 3rem;
+    color: #ff66b2;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    animation: bounce 1.5s infinite;
+  }
+  
+  /* Bouncing animation for the title */
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  /* Button styling */
+  button {
+    padding: 15px 30px;
+    background: #ff66b2;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  button:hover {
+    background: #ff3385;
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Floating hearts animation */
+  .heart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: #ff66b2;
+    margin-top: 20px;
+    animation: float 3s infinite ease-in-out;
+  }
+  
+  /* Floating hearts animation */
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  /* Cute card box container */
+  .card {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    position: relative;
+    animation: fadeIn 2s ease-out;
+  }
+  
+  /* Card title */
+  .card h2 {
+    font-size: 2rem;
+    color: #ff66b2;
+    margin-bottom: 20px;
+  }
+  
+  /* Fade-in animation for card */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Card image */
+  .card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+  
+  /* Input styling for a form */
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ff66b2;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  input[type="text"]:focus {
+    outline: none;
+    border-color: #ff3385;
+    box-shadow: 0 0 10px rgba(255, 51, 133, 0.3);
+  }
+  
+  /* A cute footer with a little animation */
+  footer {
+    position: absolute;
+    bottom: 20px;
+    font-size: 1rem;
+    color: #333;
+    animation: fadeIn 2s ease-out;
+  }
+  
+  /* Link styling */
+  footer a {
+    color: #ff66b2;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  footer a:hover {
+    color: #ff3385;
+    text-decoration: underline;
+  }
+  
+  
